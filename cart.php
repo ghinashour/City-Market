@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="assets/css/cart.css">
-
 <?php
 require_once "includes/bootstrap.php";
 include "includes/db.php";
@@ -43,6 +41,8 @@ if (isset($_POST['update_cart'])) {
     echo "<p style='color:blue;'>Cart updated!</p>";
 }
 ?>
+
+<link rel="stylesheet" href="assets/css/cart.css">
 
 <h2>Your Cart</h2>
 
