@@ -1,9 +1,6 @@
-<link rel="stylesheet" href="assets/css/checkout.css">
-
 <?php
-session_start();
+require_once "includes/bootstrap.php";
 include "includes/db.php";
-include "includes/header.php";
 
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
@@ -72,6 +69,8 @@ if (isset($_POST['place_order'])) {
 }
 ?>
 
+<link rel="stylesheet" href="assets/css/checkout.css">
+<?php include "includes/header.php"; ?>
 <h2>Checkout</h2>
 <div class="order-summary">
     <h3>Order Summary</h3>

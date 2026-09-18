@@ -1,7 +1,5 @@
-<link rel="stylesheet" href="assets/css/details.css">
-
 <?php
-session_start();
+require_once "includes/bootstrap.php";
 include "includes/db.php";
 include "includes/header.php";
 

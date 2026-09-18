@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="assets/css/cart.css">
 
 <?php
-session_start(); // Start session to store cart
+require_once "includes/bootstrap.php";
 include "includes/db.php";
 include "includes/header.php";
 

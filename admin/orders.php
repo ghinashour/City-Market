@@ -1,11 +1,13 @@
 <?php
-session_start();
+require_once "../includes/bootstrap.php";
 if(!isset($_SESSION['admin'])){
     header("Location: login.php");
     exit;
 }
 
 include "../includes/db.php";
+
+/** @var mysqli $connection */
 
 // Update order status
 if(isset($_POST['update_status'])){
