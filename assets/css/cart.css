@@ -1,0 +1,201 @@
+/* Cart Page Styles */
+h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin: 30px 0;
+    font-size: 2.2rem;
+}
+
+form {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th {
+    background-color: #27ae60;
+    color: white;
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
+}
+
+tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+tr:hover {
+    background-color: #f1f8e9;
+}
+
+tr:last-child td {
+    border-bottom: none;
+    font-weight: bold;
+    background-color: #e8f5e9;
+}
+
+input[type="number"] {
+    width: 70px;
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    text-align: center;
+}
+
+input[type="number"]:focus {
+    outline: none;
+    border-color: #27ae60;
+    box-shadow: 0 0 0 2px rgba(39, 174, 96, 0.2);
+}
+
+button, a button {
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.3s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+button:hover, a button:hover {
+    background-color: #219653;
+}
+
+button[name="update_cart"] {
+    background-color: #3498db;
+    margin-right: 10px;
+}
+
+button[name="update_cart"]:hover {
+    background-color: #2980b9;
+}
+
+a[href*="remove"] {
+    color: #e74c3c;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 5px 10px;
+    border-radius: 3px;
+    transition: background-color 0.3s;
+}
+
+a[href*="remove"]:hover {
+    background-color: #ffebee;
+}
+
+p {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #7f8c8d;
+    margin: 50px 0;
+}
+
+p a {
+    color: #27ae60;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
+p[style*="color:green"], 
+p[style*="color:blue"] {
+    text-align: center;
+    padding: 15px;
+    border-radius: 4px;
+    font-weight: 500;
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+p[style*="color:green"] {
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+}
+
+p[style*="color:blue"] {
+    background-color: #d1ecf1;
+    border: 1px solid #bee5eb;
+}
+
+br {
+    margin: 10px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    form {
+        padding: 10px;
+    }
+    
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    
+    th, td {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+    
+    input[type="number"] {
+        width: 60px;
+        padding: 6px;
+    }
+    
+    button, a button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    button[name="update_cart"] {
+        margin-right: 0;
+    }
+}
+
+/* Empty Cart Message */
+p:contains("Your cart is empty") {
+    text-align: center;
+    font-size: 1.3rem;
+    color: #95a5a6;
+    margin-top: 50px;
+}
+
+/* Total Row Styling */
+tr:last-child td:first-child {
+    text-align: right;
+    padding-right: 20px;
+}
+
+/* Align remove link center */
+td:last-child {
+    text-align: center;
+}

@@ -1,0 +1,5 @@
+.git
+.history
+.vscode
+.env
+*.log
