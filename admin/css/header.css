@@ -1,0 +1,165 @@
+/* Variables for consistent theming */
+:root {
+    --primary: #2e7d32;
+    --primary-dark: #1b5e20;
+    --primary-light: #4caf50;
+    --secondary: #ff9800;
+    --accent: #ff5722;
+    --light: #f8f9fa;
+    --dark: #222222;
+    --gray: #6c757d;
+    --light-gray: #e9ecef;
+    --border-radius: 10px;
+    --box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+    --transition: all 0.22s ease;
+}
+
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    line-height: 1.5;
+    color: var(--dark);
+    background-color: #ffffff;
+}
+
+/* Header */
+.site-header {
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 4%;
+    max-width: 1400px;
+    margin: 0 auto;
+    gap: 1rem;
+}
+
+.logo-area {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-area h1 {
+    color: var(--primary);
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 4px;
+}
+
+.welcome-text {
+    color: var(--gray);
+    font-size: 0.85rem;
+}
+
+.main-nav {
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--dark);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition);
+    padding: 0.5rem 0.25rem;
+    position: relative;
+}
+
+.nav-link:hover {
+    color: var(--primary-dark);
+}
+
+.nav-link.active {
+    color: var(--primary);
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--primary);
+    border-radius: 3px;
+}
+
+.nav-link.logout {
+    color: var(--accent);
+}
+
+.nav-link.logout:hover {
+    color: var(--primary-dark);
+}
+
+.cart-count {
+    background-color: var(--accent);
+    color: white;
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 10px;
+    margin-left: 4px;
+}
+
+.mobile-menu-toggle {
+    display: none;
+    font-size: 1.35rem;
+    cursor: pointer;
+    color: var(--primary);
+}
+
+/* Responsive: collapse nav into a mobile menu */
+@media (max-width: 900px) {
+    .header-container {
+        padding: 0.6rem 3%;
+    }
+
+    .main-nav {
+        display: none;
+        position: absolute;
+        right: 4%;
+        top: 64px;
+        background: #fff;
+        box-shadow: var(--box-shadow);
+        border-radius: var(--border-radius);
+        padding: 0.5rem 0.75rem;
+        flex-direction: column;
+        min-width: 180px;
+    }
+
+    .main-nav.show {
+        display: flex;
+    }
+
+    .mobile-menu-toggle {
+        display: block;
+    }
+}
+
+/* Small tweaks for tight headers */
+.site-header .header-container a {
+    line-height: 1;
+}
+
+.site-header .header-container .logo-area h1 i {
+    color: var(--primary-dark);
+}
