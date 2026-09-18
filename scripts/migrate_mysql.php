@@ -93,6 +93,16 @@ function quote_identifier(string $identifier): string
     return '`' . str_replace('`', '``', $identifier) . '`';
 }
 
+function normalize_create_sql(string $create_sql): string
+{
+    // Railway uses stricter SQL mode than some local XAMPP installations.
+    return preg_replace(
+        '/(`[^`]+`\s+date\s+NOT NULL)\s+DEFAULT\s+CURRENT_TIMESTAMP\(\)/i',
+        '$1',
+        $create_sql
+    ) ?? $create_sql;
+}
+
 function run_check(array $source_config, array $target_config): int
 {
     foreach ([['Local source', $source_config], ['Railway target', $target_config]] as [$label, $config]) {
@@ -128,7 +138,7 @@ function migrate(mysqli $source, mysqli $target): void
             throw new RuntimeException('Could not read schema for ' . $table_name . ': ' . mysqli_error($source));
         }
         $create_row = mysqli_fetch_assoc($create_result);
-        $create_sql = $create_row['Create Table'];
+        $create_sql = normalize_create_sql($create_row['Create Table']);
 
         if (!mysqli_query($target, 'DROP TABLE IF EXISTS ' . $quoted_table)) {
             throw new RuntimeException('Could not reset target table ' . $table_name . ': ' . mysqli_error($target));
