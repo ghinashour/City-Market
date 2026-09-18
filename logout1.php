@@ -1,6 +1,6 @@
 <?php
 // logout.php
-session_start();
+require_once "includes/bootstrap.php";
 session_unset();
 session_destroy();
 setcookie(session_name(), '', time() - 3600, '/');

@@ -1,8 +1,8 @@
 <?php
+require_once "includes/bootstrap.php";
+
 // Include database connection
 include "includes/db.php";
-
-session_start();
 
 // Initialize cart if not exists
 if (!isset($_SESSION['cart'])) {

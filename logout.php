@@ -1,8 +1,6 @@
 <?php
 // logout.php — fully destroy session and clear session cookie
-if (session_status() === PHP_SESSION_NONE) {
-	session_start();
-}
+require_once "includes/bootstrap.php";
 
 // Unset all session variables
 $_SESSION = array();
