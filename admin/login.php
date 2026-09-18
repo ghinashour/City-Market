@@ -10,13 +10,14 @@ if(isset($_POST['login'])){
     $password = $_POST['password'] ?? '';
 
     $admin_username = '';
+    $admin_id = 0;
     $admin_password_hash = '';
-    $stmt = mysqli_prepare($connection, "SELECT username, password FROM admins WHERE username = ? LIMIT 1");
+    $stmt = mysqli_prepare($connection, "SELECT id, username, password FROM admins WHERE username = ? LIMIT 1");
 
     if ($stmt) {
         mysqli_stmt_bind_param($stmt, "s", $username);
         mysqli_stmt_execute($stmt);
-        mysqli_stmt_bind_result($stmt, $admin_username, $admin_password_hash);
+        mysqli_stmt_bind_result($stmt, $admin_id, $admin_username, $admin_password_hash);
         mysqli_stmt_fetch($stmt);
         mysqli_stmt_close($stmt);
     } else {
@@ -24,7 +25,19 @@ if(isset($_POST['login'])){
         $error = 'Admin login is temporarily unavailable. Please try again later.';
     }
 
-    if (!$error && rate_limit('admin_login', 5, 900) && $admin_password_hash && password_verify($password, $admin_password_hash)) {
+    $password_is_valid = $admin_password_hash !== '' && (
+        password_verify($password, $admin_password_hash) ||
+        hash_equals($admin_password_hash, $password)
+    );
+
+    if (!$error && rate_limit('admin_login', 5, 900) && $password_is_valid) {
+        if (password_get_info($admin_password_hash)['algo'] === 0) {
+            $new_hash = password_hash($password, PASSWORD_DEFAULT);
+            $update_stmt = mysqli_prepare($connection, "UPDATE admins SET password = ? WHERE id = ?");
+            mysqli_stmt_bind_param($update_stmt, "si", $new_hash, $admin_id);
+            mysqli_stmt_execute($update_stmt);
+            mysqli_stmt_close($update_stmt);
+        }
         session_regenerate_id(true);
         $_SESSION['admin'] = $admin_username;
         header("Location: products.php");
